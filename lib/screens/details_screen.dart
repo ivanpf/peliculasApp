@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:peliculas/widgets/widgets.dart';
 
@@ -10,7 +12,6 @@ class DetailsScreen extends StatelessWidget {
     final String movie =
         ModalRoute.of(context)?.settings.arguments.toString() ?? 'no-movie';
     return Scaffold(
-      // ignore: avoid_unnecessary_containers
       body: CustomScrollView(
         slivers: [
           const _CustomAppBar(),
