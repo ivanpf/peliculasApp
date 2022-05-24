@@ -3,7 +3,6 @@
 //     final nowPlayingResponse = nowPlayingResponseFromMap(jsonString);
 
 import 'dart:convert';
-
 import 'models.dart';
 
 class NowPlayingResponse {
