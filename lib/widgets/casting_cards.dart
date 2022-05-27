@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:peliculas/models/models.dart';
 import 'package:peliculas/providers/movies_providers.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,9 @@ class CastingCards extends StatelessWidget {
           child: ListView.builder(
               itemCount: 10,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (_, int index) => const _CastCard()),
+              itemBuilder: (_, int index) => _CastCard(
+                    actor: cast[index],
+                  )),
         );
       },
     );
@@ -39,7 +40,9 @@ class CastingCards extends StatelessWidget {
 }
 
 class _CastCard extends StatelessWidget {
-  const _CastCard({Key? key}) : super(key: key);
+  final Cast actor;
+
+  const _CastCard({Key? key, required this.actor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,9 +54,9 @@ class _CastCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: const FadeInImage(
-              placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('https://via.placeholder.com/150x300'),
+            child: FadeInImage(
+              placeholder: const AssetImage('assets/no-image.jpg'),
+              image: NetworkImage(actor.fullProfilePath),
               height: 140,
               width: 100,
               fit: BoxFit.cover,
@@ -62,8 +65,8 @@ class _CastCard extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          const Text(
-            'actor.name',
+          Text(
+            actor.name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
